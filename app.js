@@ -256,6 +256,8 @@ const words = [
     const wordElement = document.getElementById("word");
     const meaningElement = document.getElementById("meaning");
     const buttonElement = document.getElementById("btn");
+    const soundButtonElement = document.getElementById("sound-btn");
+    let isSoundOn = true; // varsayılan olarak ses açık
 
     function generateWord() {
       const randomIndex = Math.floor(Math.random() * words.length);
@@ -264,6 +266,31 @@ const words = [
       meaningElement.innerText = word.meaning;
     }
 
-    buttonElement.addEventListener("click", generateWord);
+    function speakWord() {
+      if (isSoundOn) { // sadece ses açıksa kelimeyi oku
+        const speech = new SpeechSynthesisUtterance(wordElement.innerText);
+        speech.lang = "en-US";
+        speech.volume = 1;
+        speech.rate = 1;
+        speech.pitch = 1;
+        window.speechSynthesis.speak(speech);
+      }
+    }
+
+    function toggleSound() {
+      isSoundOn = !isSoundOn;
+      if (isSoundOn) {
+        soundButtonElement.innerText = "Sesi Kapat";
+      } else {
+        soundButtonElement.innerText = "Sesi Aç";
+      }
+    }
+
+    buttonElement.addEventListener("click", function () {
+      generateWord();
+      speakWord();
+    });
+
+    soundButtonElement.addEventListener("click", toggleSound);
 
     generateWord();
