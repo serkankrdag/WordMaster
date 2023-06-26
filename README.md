@@ -1,4 +1,4 @@
-# WordMaster
+# WordMaster 
 
 WordMaster is a fun and educational JavaScript game designed to improve your English vocabulary skills. The game presents you with randomly selected word lists and their definitions, and your task is to choose the correct word from the options provided. As you progress through the game, you can expand your vocabulary and enhance your language skills.
 
